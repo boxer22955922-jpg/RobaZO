@@ -78,6 +78,7 @@
         inputs.forEach(id => {
             v[id] = parseInt(document.getElementById(id).value);
             document.getElementById('l-' + id).innerText = v[id];
+            document.getElementById(id).style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
         });
 
         // 1. Считаем базу
