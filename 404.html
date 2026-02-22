@@ -27,12 +27,10 @@
         .result-label { color: #888; font-size: 14px; margin-bottom: 5px; }
         .score { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .formula-hint { font-size: 11px; color: #444; margin-top: 10px; font-family: monospace; }
-        .blue-style {backgrund-image:linear-gradient(to right, var(--blue),var(--blue)) !important; 
-                     background-size: 0% 100%;
+        .blue-style {background-image:linear-gradient(to right, #007bff, #007bff) !important; 
                      background-repeat: no-repeat !important;
                      filter: drop-shadow(0 0 10px var(--blue));}
-        .vibe-style {background-image: linear-gradient(to right, var(--purple),var(--purple)) !important; 
-                     background-size: 0% 100%;
+        .vibe-style {background-image: linear-gradient(to right, #a855f7, #a855f7) !important;
                      background-repeat: no-repeat !important;
                      filter: drop-shadow(0 0 10px var(--purple));}
     </style>
@@ -78,8 +76,7 @@
 </div>
 
 <script>
-    const inputs = ['face', 'body', 'style', 'intel', 'vibe'];
-    
+    const inputs = ['face', 'body', 'style', 'intel', 'vibe']
     function update() {
         // Получаем все значения
         const v = {};
