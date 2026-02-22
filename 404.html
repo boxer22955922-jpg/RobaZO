@@ -78,11 +78,9 @@
         inputs.forEach(id => {
             v[id] = parseInt(document.getElementById(id).value);
             document.getElementById('l-' + id).innerText = v[id];
-            document.getElementById(id).style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
-            if(id === 'vibe') {el.style.backgroundImage = 'linear-gradient(var(--purple),var(--purple))';}
-            el.style.filter = `drop-shadow(0 0 10px${id === 'vibe' ? 'var(--purple)': 'var(--blue)'})`;
-        });
-
+            let el = document.getElementById(id); el.style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
+            if(id === 'vibe') {el.style.backgroundImage = 'linear-gradient(var(--purple),var(--purple))';
+                               el.style.filter = 'drop-shadow(0 0 10px var(--purple))';} else {el.style.filter = 'drop-shadow(0 0 10px var(--blue))';}
         // 1. Считаем базу
         const baseSum = v.face + v.body + v.style + v.intel;
         
