@@ -79,6 +79,7 @@
             v[id] = parseInt(document.getElementById(id).value);
             document.getElementById('l-' + id).innerText = v[id];
             document.getElementById(id).style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
+            if(id === 'vibe') document.getElementById(id).style.backgroundImage = 'linear-gradient(var(--purple),var(--purple))';
         });
 
         // 1. Считаем базу
