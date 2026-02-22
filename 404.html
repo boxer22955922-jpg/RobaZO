@@ -27,6 +27,14 @@
         .result-label { color: #888; font-size: 14px; margin-bottom: 5px; }
         .score { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .formula-hint { font-size: 11px; color: #444; margin-top: 10px; font-family: monospace; }
+        .blue-style {backgrund-image:linear-gradient(var(--blue),var(--blue)) !important; 
+                     background-size: 0% 100%;
+                     background-repeat: no-repeat;
+                     filter: drop-shadow(0 0 10px var(--blue));}
+        .vibe-style {background-image: linear-gradient(var(--purple),var(--purple)) !important; 
+                     background-size: 0% 100%;
+                     background-repeat: no-repeat;
+                     filter: drop-shadow(0 0 10px var(--purple));}
     </style>
 </head>
 <body>
@@ -75,12 +83,12 @@
     function update() {
         // Получаем все значения
         const v = {};
-        inputs.forEach(id => {
-            v[id] = parseInt(document.getElementById(id).value);
-            document.getElementById('l-' + id).innerText = v[id];
-            let el = document.getElementById(id); el.style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
-            if(id === 'vibe') {el.style.backgroundImage = 'linear-gradient(var(--purple),var(--purple))';
-                               el.style.filter = 'drop-shadow(0 0 10px var(--purple))';} else {el.style.filter = 'drop-shadow(0 0 10px var(--blue))';}
+        inputs.forEach(id => {let el = document.getElementById(id);
+                              v[id] = parseInt(el.value);
+                              document.getElementById('1-' + id).innerText = v[id];
+                              el.style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
+        el.className = (id === 'vibe') ? 'vibe-style' : 'blue-style';}
+                                  
         // 1. Считаем базу
         const baseSum = v.face + v.body + v.style + v.intel;
         
