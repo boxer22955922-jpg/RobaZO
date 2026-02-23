@@ -4,34 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Rating System</title>
-  <style>
-  :root { --blue: #4e8cff; --purple: #a347ff; --bg: #0a0a0c; --card: #16161a; }
-  body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    <style>
+        :root { --blue: #4e8cff; --purple: #a347ff; --bg: #0a0a0c; --card: #16161a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
 
-  .container { background: var(--card); padding: 30px; border-radius: 24px; width: 100%; max-width: 400px; border: 1px solid #2d2d35; box-shadow: 0 20px 40px rgba(0,0,0,0.5); box-sizing: border-box; }
-  h2 { text-align: center; margin-bottom: 30px; letter-spacing: 1px; color: #fff; }
+        .container { background: var(--card); padding: 30px; border-radius: 24px; width: 100%; max-width: 400px; border: 1px solid #2d2d35; box-shadow: 0 20px 40px rgba(0,0,0,0.5); box-sizing: border-box; }
+        h2 { text-align: center; margin-bottom: 30px; letter-spacing: 1px; color: #fff; }
 
-  .group-label { font-size: 12px; text-transform: uppercase; color: #666; margin-bottom: 15px; display: block; border-bottom: 1px solid #2d2d35; padding-bottom: 8px; }
+        .group-label { font-size: 12px; text-transform: uppercase; color: #666; margin-bottom: 15px; display: block; border-bottom: 1px solid #2d2d35; padding-bottom: 8px; }
 
-  .param { margin-bottom: 20px; }
-  .info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 500; }
-  .val { color: var(--blue); font-family: monospace; font-size: 1.1em; }
-  .vibe-val { color: var(--purple); }
+        .param { margin-bottom: 25px; }
+        .info { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 500; }
+        .val { color: var(--blue); font-family: monospace; font-size: 1.1em; }
+        .vibe-val { color: var(--purple); }
 
-  /* Кастомные ползунки */
-  input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 5px; outline: none; background: rgba(255,255,255,0.1); }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #4e8cff; cursor: pointer; transition: 0.2s; }
-  
-  #vibe::-webkit-slider-thumb { background: #a347ff !important; box-shadow: 0 0 15px rgba(163, 71, 255, 0.8) !important; }
+        /* Кастомные ползунки (дорожка) */
+        input[type=range] { 
+            -webkit-appearance: none; 
+            width: 100%; 
+            height: 6px; 
+            border-radius: 5px; 
+            outline: none; 
+            background: rgba(255,255,255,0.1); 
+            transition: box-shadow 0.2s;
+        }
 
-  .result-card { background: linear-gradient(135deg, #1a1a20 0%, #0f0f12 100%); margin-top: 30px; padding: 20px; border-radius: 18px; border: 1px solid #2d2d35; text-align: center; }
-  .result-label { color: #888; font-size: 14px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
-  .score { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .formula-hint { font-size: 11px; color: #444; margin-top: 10px; font-family: monospace; }
+        /* Ползунки: Бегунок (Thumb) для синих */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; 
+            width: 18px; 
+            height: 18px; 
+            border-radius: 50%;
+            background: var(--blue); 
+            cursor: pointer; 
+            box-shadow: 0 0 10px rgba(78, 140, 255, 0.8);
+        }
 
-  .blue-style { background-image: linear-gradient(to right, #4e8cff, #4e8cff) !important; background-repeat: no-repeat !important; filter: drop-shadow(0 0 10px rgba(78, 140, 255, 0.5)); }
-  .vibe-style { background-image: linear-gradient(to right, #a347ff, #a347ff) !important; background-repeat: no-repeat !important; filter: drop-shadow(0 0 10px rgba(163, 71, 255, 0.5)); }
-</style>
+        /* Ползунки: Бегунок (Thumb) для Вайба (Фиолетовый) */
+        #vibe::-webkit-slider-thumb {
+            background: var(--purple);
+            box-shadow: 0 0 15px rgba(163, 71, 255, 0.8);
+        }
+
+        .result-card { background: linear-gradient(135deg, #1a1a20 0%, #0f0f12 100%); margin-top: 30px; padding: 20px; border-radius: 18px; border: 1px solid #2d2d35; text-align: center; }
+        .result-label { color: #888; font-size: 14px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
+        .score { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .formula-hint { font-size: 11px; color: #444; margin-top: 10px; font-family: monospace; }
+    </style>
 </head>
 <body>
 
@@ -39,31 +58,31 @@
     <h2>Оценка Человека</h2>
 
     <span class="group-label">Базовые показатели (1-10)</span>
-    
+
     <div class="param">
-        <div class="info">Лицо <span class="val" id="l-face">10</span></div>
+        <div class="info">Лицо <span class="val" id="1-face">10</span></div>
         <input type="range" min="1" max="10" value="10" id="face">
     </div>
 
     <div class="param">
-        <div class="info">Фигура <span class="val" id="l-body">10</span></div>
+        <div class="info">Фигура <span class="val" id="1-body">10</span></div>
         <input type="range" min="1" max="10" value="10" id="body">
     </div>
 
     <div class="param">
-        <div class="info">Стиль / Образ <span class="val" id="l-style">10</span></div>
+        <div class="info">Стиль / Образ <span class="val" id="1-style">10</span></div>
         <input type="range" min="1" max="10" value="10" id="style">
     </div>
 
     <div class="param">
-        <div class="info">Харизма / Ум <span class="val" id="l-intel">10</span></div>
+        <div class="info">Харизма / Ум <span class="val" id="1-intel">10</span></div>
         <input type="range" min="1" max="10" value="10" id="intel">
     </div>
 
     <span class="group-label">Атмосфера</span>
     <div class="param">
-        <div class="info">Вайб / Индивидуальность <span class="val vibe-val" id="l-vibe">10</span></div>
-        <input type="range" min="1" max="10" value="10" id="vibe" class="vibe-input">
+        <div class="info">Вайб / Индивидуальность <span class="val vibe-val" id="1-vibe">10</span></div>
+        <input type="range" min="1" max="10" value="10" id="vibe">
     </div>
 
     <div class="result-card">
@@ -72,40 +91,49 @@
         <div class="formula-hint">(Sum * 1.4) * Vibe_Mult</div>
     </div>
 </div>
-    <script>
-  const inputs = ['face', 'body', 'style', 'intel', 'vibe'];
-  
-  function update() {
-      const v = {};
-      inputs.forEach(id => {
-          let el = document.getElementById(id);
-          v[id] = parseInt(el.value);
-          
-          // Обновляем цифры над ползунками (тут теперь 100% правильная цифра 1)
-          document.getElementById('1-' + id).innerText = v[id];
-          
-          // Закрашиваем синим или фиолетовым
-          el.style.backgroundSize = ((v[id] - 1) * 11.1) + '% 100%';
-          el.className = (id === 'vibe') ? 'vibe-style' : 'blue-style';
-      });
+<script>
+    const inputs = ['face', 'body', 'style', 'intel', 'vibe'];
 
-      // Считаем математику
-      const baseSum = v.face + v.body + v.style + v.intel;
-      const intermediate = baseSum * 1.4;
-      const vibeMultiplier = 1 + (v.vibe - 1) * (0.6072 / 9);
-      const finalScore = intermediate * vibeMultiplier;
-      
-      // Выводим итог
-      document.getElementById('total').innerText = Math.round(finalScore);
-  }
+    function update() {
+        const v = {};
+        inputs.forEach(id => {
+            let el = document.getElementById(id);
+            v[id] = parseInt(el.value);
 
-  // Запускаем расчет при любом движении ползунка
-  inputs.forEach(id => {
-      document.getElementById(id).addEventListener('input', update);
-  });
+            // Обновляем текст цифры над ползунком
+            document.getElementById('1-' + id).innerText = v[id];
 
-  // Запускаем первый раз при загрузке страницы
-  update();
+            // Рассчитываем процент заполнения ползунка (от 0% до 100%)
+            let percent = ((v[id] - 1) / 9) * 100;
+            
+            // Выбираем цвет: фиолетовый для вайба, синий для остальных
+            let color = (id === 'vibe') ? '#a347ff' : '#4e8cff';
+            
+            // Делаем крутой цветной след, который заполняется за бегунком!
+            el.style.background = linear-gradient(to right, ${color} ${percent}%, rgba(255,255,255,0.1) ${percent}%);
+            
+            // Легкое свечение всей полоски
+            el.style.boxShadow = 0 0 8px ${color}40;
+        });
+
+        // Считаем итоговую оценку (строго по твоей формуле)
+        const baseSum = v.face + v.body + v.style + v.intel;
+        const intermediate = baseSum * 1.4;
+        const vibeMultiplier = 1 + (v.vibe - 1) * (0.6072 / 9);
+        const finalScore = intermediate * vibeMultiplier;
+
+        // Выводим результат
+        document.getElementById('total').innerText = Math.round(finalScore);
+    }
+
+    // Заставляем скрипт слушать каждое движение пальца
+    inputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', update);
+    });
+
+    // Запускаем расчёты сразу при открытии сайта
+    update();
 </script>
+
 </body>
 </html>
