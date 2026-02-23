@@ -18,9 +18,9 @@
         .val { color: var(--blue); font-family: monospace; font-size: 1.1em; }
         .vibe-val { color: var(--purple); }
         /* Кастомные ползунки */
-        input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 5px; outline: none; }
+        input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 5px; outline: none; background: rgba(255,255,255,0.1); }
 input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #4e8cff; cursor: pointer; }
-.vibe-input::-webkit-slider-thumb { background: #a347ff !important; box-shadow: 0 0 10px rgba(163, 71, 255, 0.5) !important; }
+#vibe::-webkit-slider-thumb { background: #a347ff !important; box-shadow: 0 0 10px rgba(163, 71, 255, 0.5) !important; }
 
 .blue-style { 
   background-image: linear-gradient(to right, #4e8cff, #4e8cff) !important;
@@ -81,7 +81,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px;
         const v = {};
         inputs.forEach(id => {let el = document.getElementById(id);
                               v[id] = parseInt(el.value);
-                              document.getElementById('1-' + id).innerText = v[id];
+                              document.getElementById('l-' + id).innerText = v[id];
                               el.style.backgroundSize = (v[id]-1)*11.1 + '% 100%';
         el.className = (id === 'vibe') ? 'vibe-style': 'blue-style';
                                   
